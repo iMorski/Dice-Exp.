@@ -1,67 +1,24 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PointManager : MonoBehaviour
 {
-    [SerializeField] private Transform[] PointDonutGroup;
+    [SerializeField] private List<Transform> PointGroup;
 
-    private int PointDonutIndex;
-    
-    private bool Side = true;
+    private int Index;
 
-    public Transform[] GetNewPointGroup()
+    public List<Transform> GetPointGroupToMove(int Number)
     {
-        PointDonut PointDonut = PointDonutGroup[PointDonutIndex].GetComponent<PointDonut>();
+        List<Transform> PointGroupToMove = new List<Transform>();
 
-        Transform[] Result = PointDonut.PointGroupRight;
-
-        if (Side)
+        for (int i = 0; i < Number; i++)
         {
-            SetPointGroup(PointDonut.PointGroupLeft, false);
-            SetPointGroup(PointDonut.PointGroupRight, true);
-        }
-        else
-        {
-            SetPointGroup(PointDonut.PointGroupRight, false);
-            SetPointGroup(PointDonut.PointGroupLeft, true);
+            if (Index + 1 < PointGroup.Count) Index = Index + 1;
+            else Index = 0;
             
-            Result = PointDonut.PointGroupLeft;
+            PointGroupToMove.Add(PointGroup[Index]);
         }
 
-        void SetPointGroup(Transform[] PointGroup, bool Active)
-        {
-            if (Active)
-            {
-                StartCoroutine(GetDown(PointGroup));
-            }
-            else
-            {
-                for (int i = 0; i < PointGroup.Length; i++)
-                {
-                    PointGroup[i].gameObject.SetActive(false);
-                }
-            }
-        }
-
-        Side = !Side;
-        
-        PointDonutGroup[PointDonutIndex].transform.position = new Vector3(0.0f, 0.0f,
-            PointDonutGroup[PointDonutIndex].transform.position.z + 24.0f);
-
-        if (PointDonutIndex + 1 < PointDonutGroup.Length) PointDonutIndex = PointDonutIndex + 1;
-        else PointDonutIndex = 0;
-        
-        return Result; 
-    }
-
-    private IEnumerator GetDown(Transform[] PointGroup)
-    {
-        for (int i = 0; i < PointGroup.Length; i++)
-        {
-            PointGroup[i].gameObject.SetActive(true);
-            PointGroup[i].GetComponent<Point>().Down();
-            
-            yield return new WaitForSeconds(0.25f);
-        }
+        return PointGroupToMove;
     }
 }

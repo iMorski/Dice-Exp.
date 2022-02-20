@@ -10,8 +10,8 @@ public class DiceManager : MonoBehaviour
     [SerializeField] private float Force;
     [SerializeField] private float Torque;
 
-    public delegate void OnRoll(int Number);
-    public event OnRoll OnRollFinish;
+    public delegate void OnRollFinish(int Number);
+    public event OnRollFinish RollFinish;
 
     public void Roll()
     {
@@ -46,7 +46,7 @@ public class DiceManager : MonoBehaviour
             if (SideGroup[i].position.y > UpperSide.position.y) UpperSide = SideGroup[i];
         }
         
-        OnRollFinish?.Invoke(UpperSide.GetComponent<DiceSide>().Number);
+        RollFinish?.Invoke(UpperSide.GetComponent<DiceSide>().Number);
         
         Debug.Log(UpperSide.GetComponent<DiceSide>().Number);
     }

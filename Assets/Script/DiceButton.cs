@@ -1,13 +1,11 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DiceButton : MonoBehaviour
 {
-    [SerializeField] private CharacterManager CharacterManager;
+    [SerializeField] private Character CharacterManager;
     [SerializeField] private DiceManager DiceManager;
-    [SerializeField] private DiceBox DiceBox;
     [SerializeField] private Image Arrow;
     [SerializeField] private float HoldDuration;
     [SerializeField] private float FillSpeed;
@@ -38,13 +36,12 @@ public class DiceButton : MonoBehaviour
         Auto
     }
 
-    private void OnMoveFinish()
+    private void OnMoveFinish(Transform Point)
     {
         Active = true;
 
         if (!(StateCurrent != State.Auto))
         {
-            DiceBox.Set();
             DiceManager.Roll();
 
             Active = false;
@@ -71,7 +68,6 @@ public class DiceButton : MonoBehaviour
     {
         if (Active)
         {
-            DiceBox.Set();
             DiceManager.Roll();
 
             Active = false;
