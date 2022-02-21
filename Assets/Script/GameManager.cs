@@ -6,17 +6,23 @@ public class GameManager : MonoBehaviour
     [SerializeField] private DiceManager DiceManager;
     [SerializeField] private DiceButton DiceButton;
     [SerializeField] private Character Character;
+    [SerializeField] private CardManager CardManager;
+
+    private int RollCount;
 
     private void Awake()
     {
         DiceButton.Roll += OnRoll;
         DiceManager.RollFinish += OnRollFinish;
         Character.MoveFinish += OnMoveFinish;
+        CardManager.Pick += OnPick;
     }
 
     private void OnRoll()
     {
         DiceManager.Roll();
+
+        RollCount = RollCount + 1;
     }
 
     private void OnRollFinish(int Number)
@@ -27,6 +33,20 @@ public class GameManager : MonoBehaviour
 
     private void OnMoveFinish(Transform Point)
     {
+        if (RollCount != 3)
+        {
+            DiceButton.OnMoveFinish();
+        }
+        else
+        {
+            CardManager.Show();
+
+            RollCount = 0;
+        }
+    }
+
+    private void OnPick()
+    {
         DiceButton.OnMoveFinish();
     }
 
@@ -35,5 +55,6 @@ public class GameManager : MonoBehaviour
         DiceButton.Roll -= OnRoll;
         DiceManager.RollFinish -= OnRollFinish;
         Character.MoveFinish -= OnMoveFinish;
+        CardManager.Pick -= OnPick;
     }
 }

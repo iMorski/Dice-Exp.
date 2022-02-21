@@ -5,13 +5,15 @@ using Random = UnityEngine.Random;
 
 public class CardManager : MonoBehaviour
 {
-    [SerializeField] private GameObject Panel;
     [SerializeField] private List<Card> CardGroup;
     [SerializeField] private List<CardScriptable> CardScriptableGroup;
     [SerializeField] private Color ColorCommon;
     [SerializeField] private Color ColorUncommon;
     [SerializeField] private Color ColorRare;
     [SerializeField] private Color ColorEpic;
+    
+    public delegate void OnPick();
+    public event OnPick Pick;
 
     private List<int> CardCountGroup = new List<int>();
 
@@ -25,8 +27,6 @@ public class CardManager : MonoBehaviour
 
     public void Show()
     {
-        Panel.SetActive(true);
-        
         for (int i = 0; i < CardGroup.Count; i++)
         {
             CardGroup[i].EnableTouch();
@@ -86,7 +86,7 @@ public class CardManager : MonoBehaviour
             CardGroup[i].Hide();
         }
         
-        Panel.SetActive(false);
+        Pick?.Invoke();
     }
 
     private void Set(Card Card, int Index)
