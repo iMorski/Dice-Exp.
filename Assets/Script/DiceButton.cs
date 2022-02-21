@@ -1,19 +1,19 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DiceButton : MonoBehaviour
 {
-    [SerializeField] private Character CharacterManager;
-    [SerializeField] private DiceManager DiceManager;
     [SerializeField] private Image Arrow;
     [SerializeField] private float HoldDuration;
     [SerializeField] private float FillSpeed;
     [SerializeField] private Touch Touch;
-
+    
+    public delegate void OnRoll();
+    public event OnRoll Roll;
+    
     private Animator Animator;
-
-    private bool Active = true;
 
     private void Awake()
     {
@@ -22,8 +22,6 @@ public class DiceButton : MonoBehaviour
 
     private void Start()
     {
-        CharacterManager.MoveFinish += OnMoveFinish;
-        
         Touch.TapBegin += OnTapBegin;
         Touch.TapFinish += OnTapFinish;
     }
@@ -36,13 +34,15 @@ public class DiceButton : MonoBehaviour
         Auto
     }
 
-    private void OnMoveFinish(Transform Point)
+    private bool Active = true;
+
+    public void OnMoveFinish()
     {
         Active = true;
 
         if (!(StateCurrent != State.Auto))
         {
-            DiceManager.Roll();
+            Roll?.Invoke();
 
             Active = false;
         }
@@ -68,7 +68,7 @@ public class DiceButton : MonoBehaviour
     {
         if (Active)
         {
-            DiceManager.Roll();
+            Roll?.Invoke();
 
             Active = false;
         }
@@ -111,8 +111,6 @@ public class DiceButton : MonoBehaviour
 
     private void OnDisable()
     {
-        CharacterManager.MoveFinish -= OnMoveFinish;
-        
         Touch.TapBegin -= OnTapBegin;
         Touch.TapFinish -= OnTapFinish;
     }
