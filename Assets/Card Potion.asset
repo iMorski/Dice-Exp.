@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f07c65af00ba04a31b0e74c1eaaaccca, type: 3}
+  m_Name: Card Potion
+  m_EditorClassIdentifier: 
+  Type: 0
+  Rarity: 1
+  Icon: {fileID: 21300000, guid: 5de0d91b5326d47d4a3be446db7a3f09, type: 3}
+  Header: "\u041E\u0422\u041C\u0415\u041D\u041D\u041E\u0415 \u041F\u041E\u0419\u041B\u041E"
+  Description: "\u042D\u0444\u0444\u0435\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u044C
+    \u0437\u0435\u043B\u0438\u0439 \u0438\u0441\u0446\u0435\u043B\u0435\u043D\u0438\u044F
+    \u043F\u043E\u0432\u044B\u0448\u0435\u043D\u0430 \u043D\u0430 10%"

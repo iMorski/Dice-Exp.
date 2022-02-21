@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f07c65af00ba04a31b0e74c1eaaaccca, type: 3}
+  m_Name: Card Trap
+  m_EditorClassIdentifier: 
+  Type: 1
+  Rarity: 3
+  Icon: {fileID: 21300000, guid: 7c05929fb089b4aebb7242b7003599b2, type: 3}
+  Header: "\u0414\u0410\u0416\u0415 \u041D\u0415 \u0417\u0410\u041C\u0415\u0422\u0418\u041B"
+  Description: "\u041D\u0435\u0432\u043E\u0441\u043F\u0440\u0435\u0438\u043C\u0447\u0438\u0432\u043E\u0441\u0442\u044C
+    \u043A \u043B\u043E\u0432\u0443\u0448\u043A\u0430\u043C \u0434\u043E \u043A\u043E\u043D\u0446\u0430
+    \u044D\u043A\u0441\u043F\u0435\u0434\u0438\u0446\u0438\u0438"
